@@ -17,8 +17,6 @@ const AddDataForm = () => {
   const [taskId, setTaskId] = useState<string>();
   const [updateTask, setUpdateTask] = useState(false);
 
-  const [loading, setLoading] = useState(false);
-
   const getTaskList = async () => {
     const [err, res] = await Api.getTask();
     if (res) {
@@ -36,13 +34,13 @@ const AddDataForm = () => {
 
   const onClickAddHandler = async () => {
     if (name) {
-      setLoading(true);
+      
       const [err, res] = await Api.addTask(name);
       if (res) {
         getTaskList();
         getCount();
       }
-      setLoading(false);
+      
     } else {
       alert("Name field is empty!!!");
     }
@@ -50,14 +48,12 @@ const AddDataForm = () => {
 
   const onClickUpdateTaskHandler = async () => {
     if (name && taskId) {
-      setLoading(true);
       const [err, res] = await Api.updateTask(taskId, name);
       if (res) {
         getTaskList();
         getCount();
         setUpdateTask(false);
       }
-      setLoading(false);
     } else {
       alert("Name field is empty!!!");
     }
@@ -94,11 +90,10 @@ const AddDataForm = () => {
         disabled:cursor-not-allowed"
         />
         <button
-          disabled={loading}
           onClick={onClickAddHandler}
           className="text-black text-lg font-medium border-solid border-2 border-black rounded-md px-5"
         >
-          {loading ? "loading..." : "ADD"}
+         ADD
         </button>
       </div>
       <div>
@@ -140,11 +135,10 @@ const AddDataForm = () => {
         disabled:cursor-not-allowed"
           />
           <button
-            disabled={loading}
             onClick={onClickUpdateTaskHandler}
             className="text-black text-lg font-medium border-solid border-2 border-black rounded-md px-5"
           >
-            {loading ? "loading..." : "UPDATE"}
+           UPDATE
           </button>
         </div>
       )}
