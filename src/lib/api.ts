@@ -1,6 +1,6 @@
 import * as axios from "axios";
 
-const apiURL = "http://localhost:3000/api";
+const apiURL = "https://dataneuron-ivory.vercel.app/api";
 
 interface ResponseData {
   data: any;
